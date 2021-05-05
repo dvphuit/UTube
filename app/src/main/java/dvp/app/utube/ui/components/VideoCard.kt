@@ -1,29 +1,68 @@
 package dvp.app.utube.ui.components
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Icon
+
+import android.widget.Space
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import dvp.app.utube.R
+import androidx.compose.ui.unit.dp
+import dvp.app.utube.common.NetImage
+import dvp.app.utube.models.VideoModel
+import dvp.app.utube.ui.theme.RoundedShapes
+import dvp.app.utube.ui.theme.Typography
 import dvp.app.utube.ui.theme.UTubeTheme
 
 
 @Composable
-fun VideoCard (){
-    Column {
+fun VideoCard() {
 
-        Row {
-//            Icon(
-//                painter = painterResource(id = R.mipmap.ic_launcher),
-//                contentDescription = null // decorative element
-//            )
-            Column {
-                Text("Creator")
-                Text("3 minutes ago")
-            }
+    val video = VideoModel(
+        channelName = "ABCCC",
+        channelAvatar = "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+        postTime = "3 min ago",
+        videoThumb = "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
+    )
+
+    Column(modifier = Modifier.padding(8.dp)) {
+        VideoThumb(url = video.videoThumb)
+        Spacer(modifier = Modifier.height(8.dp))
+        VideoInfo(
+            avatar = video.channelAvatar,
+            channel = video.channelName,
+            postTime = video.postTime
+        )
+    }
+}
+
+@Composable
+private fun VideoThumb(url: String) {
+    NetImage(
+        url = url,
+        modifier = Modifier
+            .clip(RoundedShapes.large)
+            .height(200.dp)
+//            .aspectRatio(matchHeightConstraintsFirst = true, ratio = 4f)
+    )
+}
+
+@Composable
+private fun VideoInfo(avatar: String, channel: String, postTime: String) {
+    Row {
+        NetImage(
+            url = avatar,
+            modifier = Modifier
+                .width(40.dp)
+                .height(40.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Column {
+            Text(channel)
+            Text(postTime, style = Typography.caption)
         }
     }
 }
