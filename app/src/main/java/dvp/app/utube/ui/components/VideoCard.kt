@@ -1,16 +1,20 @@
 package dvp.app.utube.ui.components
 
 import android.widget.Space
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dvp.app.utube.common.NetImage
+import dvp.app.utube.common.State
+import dvp.app.utube.common.shimmer
 import dvp.app.utube.models.VideoModel
 import dvp.app.utube.ui.theme.RoundedShapes
 import dvp.app.utube.ui.theme.Typography
@@ -43,9 +47,10 @@ private fun VideoThumb(url: String) {
     NetImage(
         url = url,
         modifier = Modifier
+            .background(Color.White)
             .clip(RoundedShapes.large)
             .height(200.dp)
-//            .aspectRatio(matchHeightConstraintsFirst = true, ratio = 4f)
+            .shimmer(State.Start)
     )
 }
 
