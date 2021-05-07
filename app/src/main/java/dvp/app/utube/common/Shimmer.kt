@@ -1,6 +1,5 @@
 package dvp.app.utube.common
 
-import android.util.Log
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
@@ -9,9 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.draw.DrawModifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -33,7 +30,7 @@ enum class State {
 }
 
 @Composable
-fun ShimmerWrapper(content: @Composable BoxScope.() -> Unit) {
+fun ShimmerWrapper(modifier: Modifier, state:State, content: @Composable () -> Unit) {
     val transition = rememberInfiniteTransition()
     val value by transition.animateFloat(
         initialValue = -.5f,
@@ -42,31 +39,12 @@ fun ShimmerWrapper(content: @Composable BoxScope.() -> Unit) {
             animation = tween(2000),
         )
     )
-    // UI tree
-    
-
-    content(){
-        Box(
-            modifier = Modifier
-                .shimmer(0f, State.Start)
-        )
+    Box(modifier = modifier.shimmer(value, state)) {
+        content()
     }
 }
 
 fun Modifier.shimmer(value: Float, state: State) = this.then(Shimmer(value, state))
-
-fun Modifier.shimmer(state: State): Modifier = composed {
-    val transition = rememberInfiniteTransition()
-    val value by transition.animateFloat(
-        initialValue = -.5f,
-        targetValue = 1.5f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000),
-        )
-    )
-    val ret = remember(value, state) { Shimmer(value, State.Start) }
-    ret
-}
 
 
 internal class Shimmer(private val value: Float, private val state: State) : DrawModifier,
@@ -112,15 +90,11 @@ internal class Shimmer(private val value: Float, private val state: State) : Dra
 
 @Composable
 private fun Demo(modifier: Modifier) {
-    Box(
-        modifier = modifier
-            .shimmer(State.Start)
-    ) {
-
+    ShimmerWrapper(modifier, State.Start) {
         Column {
             Box(
                 modifier = Modifier
-                    .background(Color.White)
+                    .background(Color.Red)
                     .fillMaxWidth()
                     .height(200.dp)
             )
@@ -130,7 +104,7 @@ private fun Demo(modifier: Modifier) {
             Row {
                 Box(
                     modifier = Modifier
-                        .background(Color.White)
+                        .background(Color.Red)
                         .width(50.dp)
                         .height(50.dp)
                 )
@@ -138,14 +112,14 @@ private fun Demo(modifier: Modifier) {
                 Column {
                     Box(
                         modifier = Modifier
-                            .background(Color.White)
+                            .background(Color.Red)
                             .fillMaxWidth()
                             .height(20.dp)
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     Box(
                         modifier = Modifier
-                            .background(Color.White)
+                            .background(Color.Red)
                             .width(150.dp)
                             .height(20.dp)
                     )

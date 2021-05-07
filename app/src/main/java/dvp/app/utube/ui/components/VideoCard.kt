@@ -1,6 +1,5 @@
 package dvp.app.utube.ui.components
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,13 +12,10 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dvp.app.utube.common.NetImage
-import dvp.app.utube.common.State
-import dvp.app.utube.common.shimmer
 import dvp.app.utube.models.VideoModel
 import dvp.app.utube.ui.theme.RoundedShapes
 import dvp.app.utube.ui.theme.Typography
 import dvp.app.utube.ui.theme.UTubeTheme
-
 
 @Composable
 fun VideoCard() {
@@ -31,6 +27,7 @@ fun VideoCard() {
         videoThumb = "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
     )
 
+
     Column(modifier = Modifier.padding(8.dp)) {
         VideoThumb(url = video.videoThumb)
         Spacer(modifier = Modifier.height(8.dp))
@@ -40,6 +37,7 @@ fun VideoCard() {
             postTime = video.postTime
         )
     }
+
 }
 
 @Composable
@@ -47,10 +45,11 @@ private fun VideoThumb(url: String) {
     NetImage(
         url = url,
         modifier = Modifier
-            .background(Color.White)
+            .background(Color.Red, RoundedShapes.large)
             .clip(RoundedShapes.large)
+            .fillMaxWidth()
             .height(200.dp)
-            .shimmer(State.Start)
+
     )
 }
 
@@ -60,6 +59,7 @@ private fun VideoInfo(avatar: String, channel: String, postTime: String) {
         NetImage(
             url = avatar,
             modifier = Modifier
+                .background(Color.Red, CircleShape)
                 .width(40.dp)
                 .height(40.dp)
                 .clip(CircleShape)
