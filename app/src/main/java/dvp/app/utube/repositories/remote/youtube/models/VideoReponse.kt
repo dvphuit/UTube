@@ -1,4 +1,4 @@
-package dvp.app.utube.repositories.remote.models
+package dvp.app.utube.repositories.remote.youtube.models
 
 
 import kotlinx.serialization.Serializable
@@ -10,7 +10,7 @@ data class VideoResponse (
     val items: List<Item>? = null,
     val nextPageToken: String? = null,
     val pageInfo: PageInfo? = null
-)
+): BaseResponse()
 
 @Serializable
 data class Item (

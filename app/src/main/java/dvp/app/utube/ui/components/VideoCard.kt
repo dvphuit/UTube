@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dvp.app.utube.common.NetImage
 import dvp.app.utube.models.VideoModel
+import dvp.app.utube.repositories.remote.youtube.VideoRequests
 import dvp.app.utube.ui.theme.RoundedShapes
 import dvp.app.utube.ui.theme.Typography
 import dvp.app.utube.ui.theme.UTubeTheme
@@ -27,6 +28,7 @@ fun VideoCard() {
         videoThumb = "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
     )
 
+    VideoRequests.getVideos()
 
     Column(modifier = Modifier.padding(8.dp)) {
         VideoThumb(url = video.videoThumb)

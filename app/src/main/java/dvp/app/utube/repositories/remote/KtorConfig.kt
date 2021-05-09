@@ -13,7 +13,7 @@ import io.ktor.http.*
 
 private const val TIME_OUT = 30_000
 
-private val ktorClient = HttpClient(Android) {
+val ktorClient = HttpClient(Android) {
 
     install(JsonFeature) {
         serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
@@ -25,6 +25,7 @@ private val ktorClient = HttpClient(Android) {
         engine {
             connectTimeout = TIME_OUT
             socketTimeout = TIME_OUT
+            pipelining = true
         }
     }
 
