@@ -10,7 +10,7 @@ data class VideoResponse (
     val items: List<Item>? = null,
     val nextPageToken: String? = null,
     val pageInfo: PageInfo? = null
-): BaseResponse()
+): Entity()
 
 @Serializable
 data class Item (

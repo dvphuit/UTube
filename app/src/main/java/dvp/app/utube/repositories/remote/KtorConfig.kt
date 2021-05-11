@@ -9,6 +9,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.features.observer.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 
 private const val TIME_OUT = 30_000
@@ -27,6 +28,8 @@ val ktorClient = HttpClient(Android) {
             socketTimeout = TIME_OUT
             pipelining = true
         }
+
+
     }
 
     install(Logging) {
@@ -34,7 +37,6 @@ val ktorClient = HttpClient(Android) {
             override fun log(message: String) {
                 Log.v("Logger Ktor =>", message)
             }
-
         }
         level = LogLevel.ALL
     }
@@ -43,6 +45,7 @@ val ktorClient = HttpClient(Android) {
         onResponse { response ->
             Log.d("HTTP status:", "${response.status.value}")
         }
+
     }
 
     install(DefaultRequest) {

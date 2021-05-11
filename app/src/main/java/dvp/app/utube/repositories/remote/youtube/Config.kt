@@ -3,6 +3,7 @@ package dvp.app.utube.repositories.remote.youtube
 import dvp.app.utube.repositories.remote.ResultData
 import dvp.app.utube.repositories.remote.ktorClient
 import dvp.app.utube.repositories.remote.youtube.models.BaseReponse
+import dvp.app.utube.repositories.remote.youtube.models.Entity
 import dvp.app.utube.repositories.remote.youtube.models.VideoResponse
 import io.ktor.client.features.*
 import io.ktor.client.features.observer.*
@@ -23,7 +24,7 @@ private const val API_KEY = "AIzaSyChohDKU0aT1-unD3eI1rLPdA1UwcOyMC8"
 
 class YoutubeClient {
 
-    suspend fun <T : BaseReponse> get(result: (ResultData<T>) -> Unit) = ktorClient.config {
+    suspend fun <T : Entity> get(result: (ResultData<T>) -> Unit) = ktorClient.config {
         defaultRequest {
             url.protocol = URLProtocol.HTTPS
             host = BASE_URL
