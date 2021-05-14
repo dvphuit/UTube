@@ -9,6 +9,7 @@ buildscript {
         classpath(BuildPlugins.Project.kotlinGradlePlugin)
         classpath(BuildPlugins.Project.kotlinSerialization)
         classpath(BuildPlugins.Project.daggerHilt)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
     }
 }
 

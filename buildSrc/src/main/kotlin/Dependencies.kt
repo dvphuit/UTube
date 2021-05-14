@@ -83,20 +83,6 @@ object Deps {
 
 }
 
-object Libraries {
-    private object Versions {
-        const val jetpack = "1.0.0-beta01"
-        const val constraintLayout = "1.1.2"
-        const val ktx = "1.1.0-alpha05"
-    }
-
-    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.jetpack}"
-    const val constraintLayout =
-        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val ktxCore = "androidx.core:core-ktx:${Versions.ktx}"
-}
-
 object TestLibraries {
     private object Versions {
         const val junit4 = "4.12"
