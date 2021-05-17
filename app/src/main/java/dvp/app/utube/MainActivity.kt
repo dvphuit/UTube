@@ -10,10 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import dvp.app.utube.ui.Actions
-import dvp.app.utube.ui.Destinations.Home
-import dvp.app.utube.ui.Destinations.VideoDetail
-import dvp.app.utube.ui.components.VideoCard
 import dvp.app.utube.ui.theme.UTubeTheme
 
 class MainActivity : ComponentActivity() {

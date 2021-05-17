@@ -69,7 +69,10 @@ object Deps {
         const val ktorAndroid = "io.ktor:ktor-client-android:$ktorVer"
         const val ktorLogging = "io.ktor:ktor-client-logging-jvm:$ktorVer"
         const val ktorSerialization = "io.ktor:ktor-client-serialization:$ktorVer"
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+        const val retrofitSerialization = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     }
+
 
     object Hilt {
         const val main = "com.google.dagger:hilt-android:$hiltVersion"

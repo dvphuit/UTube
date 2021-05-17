@@ -71,6 +71,10 @@ dependencies {
     implementation(Deps.Networking.ktorAndroid)
     implementation(Deps.Networking.ktorLogging)
     implementation(Deps.Networking.ktorSerialization)
+
+    implementation(Deps.Networking.retrofit)
+    implementation(Deps.Networking.retrofitSerialization)
+
     implementation(Deps.Others.ktxSerialization)
 
     implementation(Deps.Hilt.main)
